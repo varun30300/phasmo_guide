@@ -48,8 +48,13 @@ class _SideObjState extends State<SideObj> {
             }
 
             return AlertDialog(
-              backgroundColor: Color(0xFFA5A0A0),
-              title: Text('Select Side Objectives'),
+              backgroundColor: Color(0xFF232222),
+              title: Text(
+                'Select Side Objectives',
+                style: TextStyle(
+                  color: Color(0xFFAC3131),
+                ),
+              ),
               content: SizedBox(
                 height: 600,
                 width: 400,
@@ -72,7 +77,7 @@ class _SideObjState extends State<SideObj> {
                             style: TextStyle(
                                 color: tempObj.contains(allObj[index])
                                     ? Color(0xFFAC3131)
-                                    : null),
+                                    : Color(0xFFA5A0A0)),
                           ),
                         ),
                         Divider(
@@ -90,7 +95,12 @@ class _SideObjState extends State<SideObj> {
                     // print(tempObj);
                     Navigator.pop(context);
                   },
-                  child: Text("Confirm"),
+                  child: Text(
+                    "Confirm",
+                    style: TextStyle(
+                      color: Color(0xFFAC3131),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -101,10 +111,12 @@ class _SideObjState extends State<SideObj> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.all(0),
-      height: screenHeight * .18,
+      padding: selectedObj.length == 0
+          ? EdgeInsets.fromLTRB(0, 20, 0, 20)
+          : EdgeInsets.fromLTRB(0, 20, 0, 5),
+      // height: screenHeight * .18,
       width: screenWidth * .9,
       decoration: BoxDecoration(
         color: Color(0xFF1A1A1A),
@@ -130,7 +142,6 @@ class _SideObjState extends State<SideObj> {
                       "Select Objectives",
                       style: TextStyle(
                         fontSize: 20,
-                        // color: Color(0xFFA5A0A0),
                       ),
                     ),
                   ),
@@ -141,43 +152,68 @@ class _SideObjState extends State<SideObj> {
               context: context,
               removeTop: true,
               removeBottom: true,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: selectedObj.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            if (completedObj.contains(selectedObj[index])) {
-                              setState(() {
-                                completedObj.remove(selectedObj[index]);
-                              });
-                            } else {
-                              setState(() {
-                                completedObj.add(selectedObj[index]);
-                              });
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              selectedObj[index],
-                              style: completedObj.contains(selectedObj[index])
-                                  ? TextStyle(
-                                      decoration: TextDecoration.lineThrough,
-                                      color: Color(0xFFA5A0A0),
-                                      fontSize: 15)
-                                  : TextStyle(
-                                      color: Color(0xFFD6D6D6), fontSize: 15),
+              child: Column(
+                children: [
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: selectedObj.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                if (completedObj.contains(selectedObj[index])) {
+                                  setState(() {
+                                    completedObj.remove(selectedObj[index]);
+                                  });
+                                } else {
+                                  setState(() {
+                                    completedObj.add(selectedObj[index]);
+                                  });
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  selectedObj[index],
+                                  style:
+                                      completedObj.contains(selectedObj[index])
+                                          ? TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              color: Color(0xFFA5A0A0),
+                                              fontSize: 15)
+                                          : TextStyle(
+                                              color: Color(0xFFD6D6D6),
+                                              fontSize: 15),
+                                ),
+                              ),
                             ),
+                          ],
+                        );
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          createAlertDialog(context).then((_) {
+                            setState(() {});
+                          });
+                        },
+                        child: Text(
+                          "Edit",
+                          style: TextStyle(
+                            color: Color(0xFFAC3131),
                           ),
                         ),
-                      ],
-                    );
-                  }),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
     );
   }

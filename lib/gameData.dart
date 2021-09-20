@@ -81,3 +81,121 @@ var evidenceSpecific = {
     'Goryo',
   ],
 };
+
+var abtGhosts = {
+  'Banshee': {
+    'evidence1': "FP",
+    'evidence2': "GO",
+    'evidence3': "DP",
+    'strength': "Targets one person at a time.",
+    'weakness': "Less aggressive near a Crucifix.",
+  },
+  'Demon': {
+    'evidence1': "FP",
+    'evidence2': "FT",
+    'evidence3': "GR",
+    'strength': "Attacks more often.",
+    'weakness': "Ouija board questions won't lower sanity.",
+  },
+  'Jinn': {
+    'evidence1': "FP",
+    'evidence2': "EM",
+    'evidence3': "FT",
+    'strength': "Travels faster when victim is far.",
+    'weakness':
+        "Turning off power source will prevent the Jinn from using its ability.",
+  },
+  'Mare': {
+    'evidence1': "SB",
+    'evidence2': "GO",
+    'evidence3': "GR",
+    'strength': "Increased attacks in the dark.",
+    'weakness': "Lights on lowers its chance to attack.",
+  },
+  'Oni': {
+    'evidence1': "EM",
+    'evidence2': "FT",
+    'evidence3': "DP",
+    'strength': "Can move objects, more active near people.",
+    'weakness': "Easy to identify due to being very active.",
+  },
+  'Phantom': {
+    'evidence1': "FP",
+    'evidence2': "SB",
+    'evidence3': "DP",
+    'strength': "Sanity drops considerably when looking at a Phantom.",
+    'weakness': "Taking a photo will make it temporarily disappear.",
+  },
+  'Poltergeist': {
+    'evidence1': "SB",
+    'evidence2': "FP",
+    'evidence3': "GR",
+    'strength': "Throws a huge amount of objects at once.",
+    'weakness': "Ineffective in an empty room.",
+  },
+  'Revenant': {
+    'evidence1': "GR",
+    'evidence2': "GO",
+    'evidence3': "FT",
+    'strength': "Travels significantly faster when hunting.",
+    'weakness': "Hiding causes it to move very slowly.",
+  },
+  'Shade': {
+    'evidence1': "EM",
+    'evidence2': "GR",
+    'evidence3': "FT",
+    'strength': "Shy, making it difficult to locate.",
+    'weakness': "Will not enter hunting mode with multiple people nearby.",
+  },
+  'Spirit': {
+    'evidence1': "EM",
+    'evidence2': "SB",
+    'evidence3': "GR",
+    'strength': "No Strengths.",
+    'weakness': "Smudge Sticks will stop it from attacking for a 180s.",
+  },
+  'Wraith': {
+    'evidence1': "EM",
+    'evidence2': "SB",
+    'evidence3': "DP",
+    'strength': "Can't be tracked by footsteps.",
+    'weakness': "Toxic reaction to salt.",
+  },
+  'Yurei': {
+    'evidence1': "FT",
+    'evidence2': "GO",
+    'evidence3': "DP",
+    'strength': "Have a stronger effect on your sanity.",
+    'weakness':
+        "Smudge Sticks ghost room will prevent it from wandering for a long time.",
+  },
+  'Yokai': {
+    'evidence1': "SB",
+    'evidence2': "GO",
+    'evidence3': "DP",
+    'strength': "Talking causes anger and increase its chance of attacking.",
+    'weakness': "When hunting, a Yokai can only hear voices close to it.",
+  },
+  'Hantu': {
+    'evidence1': "FP",
+    'evidence2': "GO",
+    'evidence3': "FT",
+    'strength': "Lower temperatures causes it to move faster.",
+    'weakness': "A Hantu will move slower in warm areas.",
+  },
+  'Goryo': {
+    'evidence1': "EM",
+    'evidence2': "FP",
+    'evidence3': "DP",
+    'strength':
+        "Goryo only show itself on camera if there are no people nearby.",
+    'weakness': "They are rarely seen far from their place of death.",
+  },
+  'Myling': {
+    'evidence1': "EM",
+    'evidence2': "FP",
+    'evidence3': "GR",
+    'strength': "Known to be quieter when hunting.",
+    'weakness': "More frequently make paranormal sounds.",
+  },
+};

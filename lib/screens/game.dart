@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phasmo_guide/components/narrowDown.dart';
+import 'package:phasmo_guide/components/questionButton.dart';
 import 'package:phasmo_guide/components/sideObj.dart';
 import 'package:phasmo_guide/components/timer.dart';
 
@@ -16,40 +17,67 @@ class _GameState extends State<Game> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.censtarter,
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Row(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Center(
+            child: Column(
               children: [
                 SizedBox(
-                  width: 5,
+                  height: 20,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("assets/ham.png"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/Phasmophobia.png',
+                      width: screenWidth * .4,
+                    )
+                  ],
                 ),
                 SizedBox(
-                  width: 75,
+                  height: 30,
                 ),
-                Image.asset(
-                  'assets/Phasmophobia.png',
-                  width: screenWidth * .4,
-                )
+                TimerComponent(),
+                SizedBox(height: 40),
+                NarrowDown(),
+                SizedBox(height: 15),
+                SideObj(),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    QuestionButton(),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text("Maps"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        primary: Color(0xFFAC3131),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("End Game"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        primary: Color(0xFFAC3131),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            SizedBox(
-              height: 30,
-            ),
-            TimerComponent(),
-            SizedBox(height: 40),
-            NarrowDown(),
-            SizedBox(height: 15),
-            SideObj(),
-          ],
+          ),
         ),
       ),
     );

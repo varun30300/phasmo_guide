@@ -11,6 +11,17 @@ class NarrowDown extends StatefulWidget {
 class _NarrowDownState extends State<NarrowDown> {
   var currentFilter = [];
   var updatedList = [];
+  bool isVisible = false;
+  var selectedGhostInfo = "";
+  String selectedGhostEvidence1 = "";
+  String selectedGhostEvidence2 = "";
+  String selectedGhostEvidence3 = "";
+  String selectedGhostStr = "";
+  String selectedGhostWeak = "";
+  TextStyle internalUseOnly = TextStyle(
+    color: Color(0xFFA5A0A0),
+    fontSize: 15,
+  );
   var isSelected = {
     "SB": false,
     'GO': false,
@@ -42,14 +53,10 @@ class _NarrowDownState extends State<NarrowDown> {
 
   checkDisabledEquip() {
     isDisabled.keys.forEach((element) {
-      // print(element + " " + evidenceSpecific[element].toString());
-      // print("Possible " + updatedList.toString());
       if ((updatedList
           .any((item) => evidenceSpecific[element]!.contains(item)))) {
-        // have a common
         isDisabled[element] = false;
       } else {
-        // have no common
         setState(() {
           isDisabled[element] = true;
         });
@@ -64,13 +71,11 @@ class _NarrowDownState extends State<NarrowDown> {
     currentFilter.forEach((element) {
       tempGhosts
           .removeWhere((item) => !evidenceSpecific[element]!.contains(item));
-      // print(tempGhosts);
     });
     setState(() {
       updatedList = tempGhosts;
     });
     checkDisabledEquip();
-    // print(updatedList);
   }
 
   canAddMoreFilter() {
@@ -107,100 +112,204 @@ class _NarrowDownState extends State<NarrowDown> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
+      children: [
+        Container(
+          child: Column(
             children: [
-              GestureDetector(
-                onTap: () {
-                  isDisabled["SB"] ?? true ? null : addFilter("SB");
-                },
-                child: evidenceButton("SB", isSelected["SB"], isDisabled["SB"]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["SB"] ?? true ? null : addFilter("SB");
+                    },
+                    child: evidenceButton(
+                        "SB", isSelected["SB"], isDisabled["SB"]),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["GO"] ?? true ? null : addFilter("GO");
+                    },
+                    child: evidenceButton(
+                        "GO", isSelected["GO"], isDisabled["GO"]),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["DP"] ?? true ? null : addFilter("DP");
+                    },
+                    child: evidenceButton(
+                        "DP", isSelected["DP"], isDisabled["DP"]),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["FP"] ?? true ? null : addFilter("FP");
+                    },
+                    child: evidenceButton(
+                        "FP", isSelected["FP"], isDisabled["FP"]),
+                  ),
+                ],
               ),
-              SizedBox(width: 15),
-              GestureDetector(
-                onTap: () {
-                  isDisabled["GO"] ?? true ? null : addFilter("GO");
-                },
-                child: evidenceButton("GO", isSelected["GO"], isDisabled["GO"]),
+              SizedBox(
+                height: 20,
               ),
-              SizedBox(width: 15),
-              GestureDetector(
-                onTap: () {
-                  isDisabled["DP"] ?? true ? null : addFilter("DP");
-                },
-                child: evidenceButton("DP", isSelected["DP"], isDisabled["DP"]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["GR"] ?? true ? null : addFilter("GR");
+                    },
+                    child: evidenceButton(
+                        "GR", isSelected["GR"], isDisabled["GR"]),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["FT"] ?? true ? null : addFilter("FT");
+                    },
+                    child: evidenceButton(
+                        "FT", isSelected["FT"], isDisabled["FT"]),
+                  ),
+                  SizedBox(width: 15),
+                  GestureDetector(
+                    onTap: () {
+                      isDisabled["EM"] ?? true ? null : addFilter("EM");
+                    },
+                    child: evidenceButton(
+                        "EM", isSelected["EM"], isDisabled["EM"]),
+                  ),
+                ],
               ),
-              SizedBox(width: 15),
-              GestureDetector(
-                onTap: () {
-                  isDisabled["FP"] ?? true ? null : addFilter("FP");
-                },
-                child: evidenceButton("FP", isSelected["FP"], isDisabled["FP"]),
+              SizedBox(
+                height: 20,
               ),
+              GridView.builder(
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  shrinkWrap: true,
+                  itemCount: allGhosts.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 3.0,
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return (updatedList.contains(allGhosts[index])
+                        ? GestureDetector(
+                            onTapDown: (tapDownDetails) {
+                              setState(() {
+                                isVisible = true;
+                                selectedGhostInfo = allGhosts[index];
+                                selectedGhostEvidence1 =
+                                    (abtGhosts[selectedGhostInfo]!['evidence1'])
+                                        .toString();
+                                selectedGhostEvidence2 =
+                                    (abtGhosts[selectedGhostInfo]!['evidence2'])
+                                        .toString();
+                                selectedGhostEvidence3 =
+                                    (abtGhosts[selectedGhostInfo]!['evidence3'])
+                                        .toString();
+                                selectedGhostStr =
+                                    (abtGhosts[selectedGhostInfo]!['strength'])
+                                        .toString();
+                                selectedGhostWeak =
+                                    (abtGhosts[selectedGhostInfo]!['weakness'])
+                                        .toString();
+                              });
+                            },
+                            onTapUp: (tapUpDetails) {
+                              setState(() {
+                                isVisible = false;
+                                selectedGhostInfo = "";
+                              });
+                            },
+                            child: Container(
+                              color: selectedGhostInfo == allGhosts[index]
+                                  ? Color(0xFFAC3131)
+                                  : Color(0xFF232222),
+                              child: Center(
+                                child: Text(
+                                  allGhosts[index],
+                                  style: TextStyle(
+                                    color: Color(0xFFD6D6D6),
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : Center(
+                            child: Text(
+                              allGhosts[index],
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ));
+                  })
             ],
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  isDisabled["GR"] ?? true ? null : addFilter("GR");
-                },
-                child: evidenceButton("GR", isSelected["GR"], isDisabled["GR"]),
-              ),
-              SizedBox(width: 15),
-              GestureDetector(
-                onTap: () {
-                  isDisabled["FT"] ?? true ? null : addFilter("FT");
-                },
-                child: evidenceButton("FT", isSelected["FT"], isDisabled["FT"]),
-              ),
-              SizedBox(width: 15),
-              GestureDetector(
-                onTap: () {
-                  isDisabled["EM"] ?? true ? null : addFilter("EM");
-                },
-                child: evidenceButton("EM", isSelected["EM"], isDisabled["EM"]),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          GridView.builder(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              shrinkWrap: true,
-              itemCount: allGhosts.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 3.0,
-                crossAxisCount: 4,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return (updatedList.contains(allGhosts[index])
-                    ? Text(
-                        allGhosts[index],
+        ),
+        Visibility(
+          visible: isVisible,
+          child: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              color: Color(0xFF232222),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        selectedGhostEvidence1,
                         style: TextStyle(
-                          color: Color(0xFFD6D6D6),
-                          fontSize: 15,
+                          color: Color(0xFFAC3131),
+                          fontSize: 25,
                         ),
-                      )
-                    : Text(
-                        allGhosts[index],
+                      ),
+                      Text(
+                        selectedGhostEvidence2,
                         style: TextStyle(
-                          fontSize: 15,
+                          color: Color(0xFFAC3131),
+                          fontSize: 25,
                         ),
-                      ));
-              })
-        ],
-      ),
+                      ),
+                      Text(
+                        selectedGhostEvidence3,
+                        style: TextStyle(
+                          color: Color(0xFFAC3131),
+                          fontSize: 25,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Strength : " + selectedGhostStr,
+                    style: internalUseOnly,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Weakness : " + selectedGhostWeak,
+                    style: internalUseOnly,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
