@@ -227,6 +227,18 @@ class _NarrowDownState extends State<NarrowDown> {
                                 selectedGhostInfo = "";
                               });
                             },
+                            onVerticalDragStart: (dragStartDetails) {
+                              setState(() {
+                                isVisible = false;
+                                selectedGhostInfo = "";
+                              });
+                            },
+                            onHorizontalDragStart: (dragStartDetails) {
+                              setState(() {
+                                isVisible = false;
+                                selectedGhostInfo = "";
+                              });
+                            },
                             child: Container(
                               color: selectedGhostInfo == allGhosts[index]
                                   ? Color(0xFFAC3131)
