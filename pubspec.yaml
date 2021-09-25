@@ -49,6 +49,15 @@ flutter:
   assets:
     - assets/Phasmophobia.png
     - assets/ham.png
+    - assets/maps/asylum/
+    - assets/maps/bleasdale/
+    - assets/maps/brownstone/
+    - assets/maps/edgefield/
+    - assets/maps/grafton/
+    - assets/maps/prison/
+    - assets/maps/ridgewood/
+    - assets/maps/tanglewood/
+    - assets/maps/willow/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

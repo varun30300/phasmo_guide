@@ -92,12 +92,12 @@ class _SideObjState extends State<SideObj> {
                 TextButton(
                   onPressed: () {
                     selectedObj = tempObj;
-                    // print(tempObj);
                     Navigator.pop(context);
                   },
                   child: Text(
                     "Confirm",
                     style: TextStyle(
+                      fontSize: 20,
                       color: Color(0xFFAC3131),
                     ),
                   ),

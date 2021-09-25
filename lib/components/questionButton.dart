@@ -41,79 +41,76 @@ class _QuestionButtonState extends State<QuestionButton> {
           builder: (context) {
             return AlertDialog(
               backgroundColor: Color(0xFF232222),
-              content: SizedBox(
+              content: Container(
                 width: 400,
-                child: Container(
-                  height: 600,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          "Spirit Box Question",
-                          style: TextStyle(
-                            color: Color(0xFFAC3131),
-                            fontSize: 25,
-                          ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        "Spirit Box Question",
+                        style: TextStyle(
+                          color: Color(0xFFAC3131),
+                          fontSize: 25,
                         ),
                       ),
-                      ListView.builder(
-                        padding: EdgeInsets.only(top: 0),
-                        shrinkWrap: true,
-                        itemCount: sbQuestions.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                sbQuestions[index],
-                                style: TextStyle(
-                                  color: Color(0xFFA5A0A0),
-                                  fontSize: 15,
-                                ),
+                    ),
+                    ListView.builder(
+                      padding: EdgeInsets.only(top: 0),
+                      shrinkWrap: true,
+                      itemCount: sbQuestions.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              sbQuestions[index],
+                              style: TextStyle(
+                                color: Color(0xFFA5A0A0),
+                                fontSize: 15,
                               ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
-                        child: Text(
-                          "Ouija Board Question",
-                          style: TextStyle(
-                            color: Color(0xFFAC3131),
-                            fontSize: 25,
-                          ),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 20),
+                      child: Text(
+                        "Ouija Board Question",
+                        style: TextStyle(
+                          color: Color(0xFFAC3131),
+                          fontSize: 25,
                         ),
                       ),
-                      ListView.builder(
-                        padding: EdgeInsets.only(top: 0),
-                        shrinkWrap: true,
-                        itemCount: ouijaQuestions.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                ouijaQuestions[index],
-                                style: TextStyle(
-                                  color: Color(0xFFA5A0A0),
-                                  fontSize: 15,
-                                ),
+                    ),
+                    ListView.builder(
+                      padding: EdgeInsets.only(top: 0),
+                      shrinkWrap: true,
+                      itemCount: ouijaQuestions.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              ouijaQuestions[index],
+                              style: TextStyle(
+                                color: Color(0xFFA5A0A0),
+                                fontSize: 15,
                               ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
               actions: [
@@ -124,6 +121,7 @@ class _QuestionButtonState extends State<QuestionButton> {
                   child: Text(
                     "Close",
                     style: TextStyle(
+                      fontSize: 20,
                       color: Color(0xFFAC3131),
                     ),
                   ),

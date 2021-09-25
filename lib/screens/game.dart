@@ -3,6 +3,7 @@ import 'package:phasmo_guide/components/narrowDown.dart';
 import 'package:phasmo_guide/components/questionButton.dart';
 import 'package:phasmo_guide/components/sideObj.dart';
 import 'package:phasmo_guide/components/timer.dart';
+import 'package:phasmo_guide/screens/maps.dart';
 
 class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
@@ -50,7 +51,14 @@ class _GameState extends State<Game> {
                   children: [
                     QuestionButton(),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Maps(),
+                          ),
+                        );
+                      },
                       child: Text("Maps"),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10),
